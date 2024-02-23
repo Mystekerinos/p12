@@ -23,9 +23,7 @@
     height: 6.4rem;
 }
 
-.sidebar-nav-logo:hover {
-    filter: invert(5);
-}
+
 
 .sidebar-text {
     font-weight: 500;
@@ -37,5 +35,4 @@
     text-align: center;
     white-space: nowrap;
     text-align: center;
-    transform-origin: center center;
 }
