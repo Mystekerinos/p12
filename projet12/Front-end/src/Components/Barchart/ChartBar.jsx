@@ -11,23 +11,16 @@ import {
 } from "recharts";
 
 const ActivityChart = ({ userData }) => {
-  // Vérifiez d'abord si les données d'utilisateur sont disponibles et si la propriété 'sessions' est définie
   if (!userData || !userData.sessions) {
-    // Si les données d'utilisateur ne sont pas disponibles, affichez un message d'erreur
     return <div>Aucune donnée d'utilisateur disponible</div>;
   }
-  console.log("userData", userData);
-  // Fonction pour générer les nombres de jour d'activité
+
   const activityDayNumbers = () => {
-    // Utilisez la méthode map pour itérer sur les sessions et renvoyer un tableau de nombres de jour
     return userData.sessions.map((session, index) => index + 1);
   };
 
-  // Fonction pour rendre le tooltip
   const renderTooltip = ({ active, payload }) => {
-    // Vérifiez si le tooltip est actif et si les données du payload sont disponibles
     if (active && payload && payload.length) {
-      // Si oui, affichez le tooltip avec les données du payload
       return (
         <div
           style={{
@@ -39,7 +32,6 @@ const ActivityChart = ({ userData }) => {
             fontWeight: "500",
           }}
         >
-          {/* Utilisez la méthode map pour itérer sur les données du payload et afficher chaque entrée */}
           {payload.map((entry, index) => (
             <p
               key={index}
@@ -51,11 +43,9 @@ const ActivityChart = ({ userData }) => {
     }
   };
 
-  // Rendu du composant
   return (
     <ResponsiveContainer width="90%" height="80%">
       <BarChart data={userData.sessions} barGap={12} barSize={8}>
-        {/* Titre du graphique */}
         <text
           x={0}
           y={20}
@@ -65,10 +55,8 @@ const ActivityChart = ({ userData }) => {
           Activité quotidienne
         </text>
 
-        {/* Grille cartésienne */}
         <CartesianGrid strokeDasharray="3 3" opacity={0.5} vertical={false} />
 
-        {/* Axe X */}
         <XAxis
           dataKey={activityDayNumbers}
           tickLine={false}
@@ -77,7 +65,6 @@ const ActivityChart = ({ userData }) => {
           dy={14}
         />
 
-        {/* Axe Y pour le poids */}
         <YAxis
           yAxisId="kilogram"
           orientation="right"
@@ -91,7 +78,6 @@ const ActivityChart = ({ userData }) => {
           dx={14}
         />
 
-        {/* Axe Y pour les calories */}
         <YAxis
           yAxisId="calories"
           orientation="left"
@@ -104,10 +90,8 @@ const ActivityChart = ({ userData }) => {
           dx={-16}
         />
 
-        {/* Tooltip */}
         <Tooltip content={renderTooltip} />
 
-        {/* Légende */}
         <Legend
           layout="horizontal"
           verticalAlign="top"
@@ -116,7 +100,6 @@ const ActivityChart = ({ userData }) => {
           wrapperStyle={{ paddingBottom: "4em" }}
         />
 
-        {/* Barre pour le poids */}
         <Bar
           yAxisId="kilogram"
           name="Poids (kg)"
@@ -126,7 +109,6 @@ const ActivityChart = ({ userData }) => {
           radius={[20, 20, 0, 0]}
         />
 
-        {/* Barre pour les calories */}
         <Bar
           yAxisId="calories"
           name="Calories brûlées (kCal)"
