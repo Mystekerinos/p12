@@ -1,46 +1,42 @@
 import React from "react";
 import {
-  PolarGrid,
-  PolarAngleAxis,
   Radar,
   RadarChart,
+  PolarGrid,
+  Legend,
+  PolarAngleAxis,
+  PolarRadiusAxis,
   ResponsiveContainer,
 } from "recharts";
 
-const PerformanceChart = ({ data }) => {
-  if (!data || !data.data) {
-    return null; // Retourne null si les données ne sont pas définies ou ne contiennent pas la propriété 'data'
+const PerformanceChart = (props) => {
+  const { performanceData } = props;
+
+  if (!performanceData) {
+    return <div>Aucune donnée de performance trouvée.</div>;
   }
 
-  const performanceData = data.data;
-
-  const kindMapping = {
-    1: "Cardio",
-    2: "Energie",
-    3: "Endurance",
-    4: "Force",
-    5: "Vitesse",
-    6: "Intensité",
-  };
-
-  const formattedData = performanceData
-    .map((dataPoint) => ({
-      ...dataPoint,
-      kind: kindMapping[dataPoint.kind],
-    }))
-    .reverse();
+  const data = performanceData.data.map((item) => ({
+    subject: performanceData.kind[item.kind],
+    A: item.value,
+    B: 100,
+    fullMark: 150,
+  }));
 
   return (
-    <ResponsiveContainer width="90%" height="90%">
-      <RadarChart data={formattedData} outerRadius="70%">
-        <PolarAngleAxis
-          dataKey="kind"
-          tickLine={false}
-          tick={{ fontSize: "1.3rem", fontWeight: "500" }}
-          stroke="#FFFFFF"
+    <ResponsiveContainer width="100%" height={400}>
+      <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
+        <PolarGrid />
+        <PolarAngleAxis dataKey="subject" />
+        <PolarRadiusAxis angle={30} domain={[0, 150]} />
+        <Radar
+          name="Performance"
+          dataKey="A"
+          stroke="#8884d8"
+          fill="#8884d8"
+          fillOpacity={0.6}
         />
-        <PolarGrid radialLines={false} stroke="#FFFFFF" />
-        <Radar dataKey="value" fill="#FF0101" fillOpacity={0.7} />
+        <Legend />
       </RadarChart>
     </ResponsiveContainer>
   );
