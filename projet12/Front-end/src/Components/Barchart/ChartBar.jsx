@@ -46,13 +46,13 @@ const ChartBar = (props) => {
         <Legend />
         <Bar
           dataKey="pv"
-          fill="#8884d8"
-          activeBar={<Rectangle fill="pink" stroke="black" />}
+          fill="#282D30"
+          activeBar={<Rectangle fill="#282D30" stroke="black" />}
         />
         <Bar
           dataKey="uv"
-          fill="#82ca9d"
-          activeBar={<Rectangle fill="gold" stroke="purple" />}
+          fill="#E60000"
+          activeBar={<Rectangle fill="#E60000" stroke="purple" />}
         />
       </BarChart>
     </ResponsiveContainer>

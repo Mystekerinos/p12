@@ -33,7 +33,7 @@ const PerformanceChart = (props) => {
           name="Performance"
           dataKey="A"
           stroke="#8884d8"
-          fill="#8884d8"
+          fill="#FF0101B2"
           fillOpacity={0.6}
         />
         <Legend />
