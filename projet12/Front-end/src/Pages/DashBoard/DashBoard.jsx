@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import Header from "../../Components/Header/Header";
 import SideBar from "../../Components/SideBar/SideBar";
 import "./DashBoard.css";
-import ChartBar from "../../Components/Barchart/ChartBar";
+import ActivityBar from "../../Components/Barchart/ActivityBar";
 import React, { useState } from "react";
 import KeyMetrics from "../../Components/keyMetrics/KeyMetrics";
 import caloriesIcon from "../../Images /calories-icon.svg";
@@ -60,7 +60,7 @@ const DashBoard = () => {
                 className="chart-container"
                 style={{ width: "100%", height: "400px" }}
               >
-                <ChartBar userActivity={userActivityData} />
+                <ActivityBar userActivity={userActivityData} />
               </div>
               <div className="avgSessions-container">
                 <AvgSessionsChart
