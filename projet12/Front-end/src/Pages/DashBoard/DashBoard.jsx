@@ -57,7 +57,7 @@ const DashBoard = () => {
           <div className="dashboard-informations">
             <div className="dashboard-charts">
               <div
-                className="chart-container"
+                className="activity-container"
                 style={{ width: "100%", height: "400px" }}
               >
                 <ActivityBar userActivity={userActivityData} />

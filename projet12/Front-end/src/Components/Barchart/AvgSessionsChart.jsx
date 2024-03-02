@@ -1,12 +1,11 @@
 import React from "react";
 import {
-  AreaChart,
-  Area,
+  Line,
+  LineChart,
+  ResponsiveContainer,
   XAxis,
   YAxis,
-  CartesianGrid,
   Tooltip,
-  ResponsiveContainer,
 } from "recharts";
 
 const AvgSessionsChart = (props) => {
@@ -19,39 +18,93 @@ const AvgSessionsChart = (props) => {
   const { userAverageSessions } = props;
   console.log("AvgSessionsChart props6:", props);
   const dayLetters = ["L", "M", "M", "J", "V", "S", "D"];
-
+  console.log("userAverageSessions.sessions", userAverageSessions.sessions);
   const data = userAverageSessions.sessions.map((session, index) => ({
-    name: dayLetters[index], // Assign day letters as x-axis labels
-    uv: session.sessionLength,
+    day: session.day,
+    sessionLength: session.sessionLength,
   }));
+  const renderTooltip = ({ active, payload }) => {
+    if (active && payload.length) {
+      return (
+        <div
+          style={{
+            background: "#FFFFFF",
+            color: "#000000",
+            padding: "1em 1em",
+            textAlign: "center",
+            fontSize: "1rem",
+            fontWeight: "500",
+          }}
+        >
+          <p>{payload[0].value} min</p>
+        </div>
+      );
+    }
+  };
 
   console.log("AvgSessionsChart data:", data);
   return (
-    <div style={{ width: "100%", height: 300 }}>
-      <ResponsiveContainer>
-        <AreaChart
-          data={data}
-          margin={{
-            top: 10,
-            right: 30,
-            left: 0,
-            bottom: 0,
+    <ResponsiveContainer width="90%" height="90%">
+      <LineChart
+        data={data}
+        margin={{ top: 20, right: 10, left: 10, bottom: 20 }}
+      >
+        <defs>
+          <linearGradient id="lineGradient">
+            <stop offset="0%" stopColor="#FFFFFF" stopOpacity="30%" />
+            <stop offset="100%" stopColor="#FFFFFF" stopOpacity="100%" />
+          </linearGradient>
+        </defs>
+        <text
+          x={10}
+          y={30}
+          textAnchor="left"
+          style={{
+            fontSize: "1.8rem",
+            fontWeight: 500,
+            fill: "#FFFFFF",
+            fillOpacity: "50%",
           }}
         >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-          <Area
-            type="monotone"
-            dataKey="uv"
-            stroke="#FFFFFF"
-            fill="#FF0000
-"
-          />
-        </AreaChart>
-      </ResponsiveContainer>
-    </div>
+          Durée moyenne des sessions
+        </text>
+        <XAxis
+          dataKey="day"
+          axisLine={false}
+          tickLine={false}
+          tick={{ fill: "#FFFFFF", fillOpacity: "50%" }}
+          stroke="#FFFFFF"
+          tickMargin={10}
+          tickFormatter={(day) => dayLetters[day - 1]}
+        />
+        <YAxis
+          dataKey="sessionLength"
+          hide={true}
+          domain={["dataMin -20", "dataMax + 50"]}
+        />
+        <Line
+          dataKey="sessionLength"
+          type="natural"
+          stroke="url(#lineGradient)"
+          strokeWidth={2.5}
+          dot={false}
+          activeDot={{
+            stroke: "#FFFFFF",
+            strokeOpacity: "50%",
+            strokeWidth: 10,
+          }}
+        />
+        <Tooltip
+          content={renderTooltip}
+          cursor={{
+            stroke: "#000000",
+            strokeOpacity: "10%",
+            strokeWidth: "20%",
+            height: "100%",
+          }}
+        />
+      </LineChart>
+    </ResponsiveContainer>
   );
 };
 export default AvgSessionsChart;

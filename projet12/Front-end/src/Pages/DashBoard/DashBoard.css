@@ -8,7 +8,7 @@
     height: 100%;
     padding: 4em 8em;
 }
-.chart-container {
+.activity-container {
     width:100%;
     color: #ffffff;
     padding: 0.25em 0.5em;
@@ -19,15 +19,23 @@
 .avgSessions-container {
     height: 400px;
     width: 100%;
-    color: #ffffff;
+    background-color: #FF0000;
     padding: 0.25em 0.5em;
     text-align: center;
     font-size: 1rem;
     font-weight: 500;
 }
 .performance-container {
-    background: #FFFFFF;
-    color: #000000;
+    background-color: #282D30;
+    color: #FFFFFF;
+    padding: 1em 1em;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 500;
+}
+.objective-container {
+    background-color: #FBFBFB;
+    color: #FBFBFB;
     padding: 1em 1em;
     text-align: center;
     font-size: 1rem;

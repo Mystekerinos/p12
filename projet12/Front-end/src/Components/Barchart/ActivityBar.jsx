@@ -6,11 +6,11 @@ import {
   YAxis,
   CartesianGrid,
   Legend,
+  Tooltip,
   ResponsiveContainer,
 } from "recharts";
 
 const ActivityBar = (props) => {
-  console.log("ChartBarProps", props);
   if (!props.userActivity) {
     return <div>Aucune donnée d'activité utilisateur trouvée.</div>;
   }
@@ -19,7 +19,29 @@ const ActivityBar = (props) => {
   const activityDayNumbers = () => {
     return userActivity.sessions.map((session, index) => index + 1);
   };
-
+  const renderTooltip = ({ active, payload }) => {
+    if (active && payload.length) {
+      return (
+        <div
+          style={{
+            background: "#E60000",
+            color: "#FFFFFF",
+            padding: "0.25em 0.5em",
+            textAlign: "center",
+            fontSize: "1rem",
+            fontWeight: "500",
+          }}
+        >
+          {payload.map((entry, index) => (
+            <p
+              key={index}
+              style={{ margin: "1.25em 0" }}
+            >{`${entry.value} ${entry.unit}`}</p>
+          ))}
+        </div>
+      );
+    }
+  };
   return (
     <ResponsiveContainer width="90%" height="80%">
       <BarChart data={userActivity.sessions} barGap={12} barSize={8}>
@@ -67,7 +89,7 @@ const ActivityBar = (props) => {
           domain={["dataMin - 50", "auto"]}
           dx={-16}
         />
-
+        <Tooltip content={renderTooltip} />
         <Legend
           layout="horizontal"
           verticalAlign="top"
