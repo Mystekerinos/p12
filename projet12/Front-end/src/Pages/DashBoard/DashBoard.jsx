@@ -68,11 +68,11 @@ const DashBoard = () => {
                     userAverageSessions={userAverageSessionsData}
                   />
                 </div>
-                <div className="objective-container">
-                  <ObjectiveChart objectiveData={userObjectiveData} />
-                </div>
                 <div className="performance-container">
                   <PerformanceChart performanceData={userperformanceData} />
+                </div>
+                <div className="objective-container">
+                  <ObjectiveChart objectiveData={userObjectiveData} />
                 </div>
               </div>
             </div>
