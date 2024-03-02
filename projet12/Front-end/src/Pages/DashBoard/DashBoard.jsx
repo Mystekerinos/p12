@@ -62,17 +62,21 @@ const DashBoard = () => {
               >
                 <ActivityBar userActivity={userActivityData} />
               </div>
-              <div className="avgSessions-container">
-                <AvgSessionsChart
-                  userAverageSessions={userAverageSessionsData}
-                />
+              <div className="dashboard-charts-avgSession-objective-performance">
+                <div className="avgSessions-container">
+                  <AvgSessionsChart
+                    userAverageSessions={userAverageSessionsData}
+                  />
+                </div>
+                <div className="objective-container">
+                  <ObjectiveChart objectiveData={userObjectiveData} />
+                </div>
+                <div className="performance-container">
+                  <PerformanceChart performanceData={userperformanceData} />
+                </div>
               </div>
-              <div className="objective-container">
-                <ObjectiveChart objectiveData={userObjectiveData} />
-              </div>
-              <div className="performance-container">
-                <PerformanceChart performanceData={userperformanceData} />
-              </div>
+            </div>
+            <div className="dashboard-charts-calories-proteines-glucides-lipides">
               <div className="dashboard-charts-calories dashboard-charts-all">
                 <KeyMetrics
                   icon={caloriesIcon}

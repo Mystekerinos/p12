@@ -8,6 +8,19 @@
     height: 100%;
     padding: 4em 8em;
 }
+.dashboard-informations{
+    display: flex;
+    column-gap: 5%;
+}
+.dashboard-charts-avgSession-objective-performance{
+display:flex;
+column-gap: 5%;
+}
+
+.dashboard-charts-calories-proteines-glucides-lipides{
+    display:flex;
+    flex-direction: column;
+}
 .activity-container {
     width:100%;
     color: #ffffff;
@@ -17,7 +30,6 @@
     font-weight: 500;
 }
 .avgSessions-container {
-    height: 400px;
     width: 100%;
     background-color: #FF0000;
     padding: 0.25em 0.5em;
@@ -26,6 +38,7 @@
     font-weight: 500;
 }
 .performance-container {
+    width: 100%;
     background-color: #282D30;
     color: #FFFFFF;
     padding: 1em 1em;
@@ -34,6 +47,7 @@
     font-weight: 500;
 }
 .objective-container {
+    width: 100%;
     background-color: #FBFBFB;
     color: #FBFBFB;
     padding: 1em 1em;
