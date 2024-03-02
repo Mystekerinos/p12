@@ -25,10 +25,20 @@ const DashBoard = () => {
   const [objectiveData] = useState(USER_MAIN_DATA);
   const [performanceData] = useState(USER_PERFORMANCE);
   const [activityData] = useState(USER_ACTIVITY);
-  const [userAverageSessions] = useState(USER_AVERAGE_SESSIONS);
-
+  const [AverageSessionsData] = useState(USER_AVERAGE_SESSIONS);
   const currentUserData = userData.find((user) => user.id === parseInt(userId));
-
+  const userperformanceData = performanceData.find(
+    (user) => user.userId === parseInt(userId)
+  );
+  const userObjectiveData = objectiveData.find(
+    (user) => user.id === parseInt(userId)
+  );
+  const userActivityData = activityData.find(
+    (user) => user.userId === parseInt(userId)
+  );
+  const userAverageSessionsData = AverageSessionsData.find(
+    (user) => user.userId === parseInt(userId)
+  );
   return (
     <div>
       <Header />
@@ -50,18 +60,18 @@ const DashBoard = () => {
                 className="chart-container"
                 style={{ width: "100%", height: "400px" }}
               >
-                <ChartBar userActivity={activityData[0]} />
+                <ChartBar userActivity={userActivityData} />
               </div>
               <div className="avgSessions-container">
                 <AvgSessionsChart
-                  userAverageSessions={userAverageSessions[0]}
+                  userAverageSessions={userAverageSessionsData}
                 />
               </div>
               <div className="objective-container">
-                <ObjectiveChart {...objectiveData} />
+                <ObjectiveChart objectiveData={userObjectiveData} />
               </div>
               <div className="performance-container">
-                <PerformanceChart performanceData={performanceData[0]} />
+                <PerformanceChart performanceData={userperformanceData} />
               </div>
               <div className="dashboard-charts-calories dashboard-charts-all">
                 <KeyMetrics
