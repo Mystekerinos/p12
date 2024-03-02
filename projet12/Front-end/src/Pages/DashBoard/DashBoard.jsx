@@ -25,6 +25,7 @@ const DashBoard = () => {
   const [objectiveData] = useState(USER_MAIN_DATA);
   const [performanceData] = useState(USER_PERFORMANCE);
   const [activityData] = useState(USER_ACTIVITY);
+  const [userAverageSessions] = useState(USER_AVERAGE_SESSIONS);
 
   const currentUserData = userData.find((user) => user.id === parseInt(userId));
 
@@ -53,7 +54,7 @@ const DashBoard = () => {
               </div>
               <div className="avgSessions-container">
                 <AvgSessionsChart
-                  userAverageSessions={USER_AVERAGE_SESSIONS[0]}
+                  userAverageSessions={userAverageSessions[0]}
                 />
               </div>
               <div className="objective-container">
