@@ -1,28 +1,23 @@
-#page-not-found {
-    width: 100%;
-    height: 70vh;
-    text-align: center;
-}
 
-#page-not-found h1 {
+ h1 {
     font-size: 288px;
     margin: 70px 0;
     color: #ff6060;
+    text-align: center;
 }
 
-#page-not-found h2 {
-    color: #ff6060;
+ h2 {
+    text-align: center;
     font-size: 36px;
     font-weight: 500;
 }
 
-#page-not-found .subTitle {
-    display: inline;
-}
 
 .return-to-home {
     color: #ff6060;
+    font-size: 22px;
     margin-top: 115px;
+    text-align: center;
 }
 
 .return-to-home a {
@@ -31,52 +26,26 @@
 }
 
 @media screen and (max-width: 992px) {
-    #page-not-found {
-        height: auto;
-    }
-
-    #page-not-found h1 {
-        font-size: 180px;
-        margin-top: 144px;
-        color: #ff6060;
-    }
-
-    #page-not-found h2 {
-        display: flex;
-        align-items: center;
-        text-align: center;
-        font-size: 18px;
-    }
-
-    #page-not-found .subTitle {
-        display: block;
-    }
-}
-
-@media screen and (max-width: 650px) {
-    #page-not-found {
-        height: auto;
-    }
-
-    #page-not-found h1 {
-        font-size: 96px;
-        margin-top: 90px;
-        color: #ff6060;
-    }
-
-    #page-not-found h2 {
-        display: block;
-        font-size: 18px;
-    }
-
-    .return-to-home {
-        margin-bottom: 123px;
-    }
-}
-
-@media screen and (min-width: 750px) {
     h1 {
         font-size: 98px;
     }
+
+ h2 {
+     font-size: 36px;    
+ }
+ .return-to-home {
+     font-size: 12px;
+ }
 }
 
+@media screen and (max-width: 650px) {
+h1 {
+        font-size: 32px;
+    }
+
+    h2 {
+        font-size: 12px;
+}
+.return-to-home {
+    font-size: 8px;}
+}
