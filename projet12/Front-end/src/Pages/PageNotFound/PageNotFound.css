@@ -1,12 +1,12 @@
 
- h1 {
+ .page-not-found h1 {
     font-size: 288px;
     margin: 70px 0;
     color: #ff6060;
     text-align: center;
 }
 
- h2 {
+ .page-not-found h2 {
     text-align: center;
     font-size: 36px;
     font-weight: 500;
@@ -26,11 +26,11 @@
 }
 
 @media screen and (max-width: 992px) {
-    h1 {
+.page-not-found h2 {
         font-size: 98px;
     }
 
- h2 {
+ .page-not-found h2 {
      font-size: 22px;    
  }
  .return-to-home {
@@ -39,11 +39,11 @@
 }
 
 @media screen and (max-width: 650px) {
-h1 {
+.page-not-found h1 {
         font-size: 32px;
     }
 
-    h2 {
+.page-not-found h2 {
         font-size: 12px;
 }
 .return-to-home {
