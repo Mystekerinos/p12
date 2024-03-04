@@ -8,6 +8,16 @@ import {
   Tooltip,
 } from "recharts";
 
+/**
+ * A component to display average session duration data using a line chart.
+ * @param {object} props - The props object.
+ * @param {object} props.userAverageSessions - The user's average session data object.
+ * @param {Array} props.userAverageSessions.sessions - An array of sessions data.
+ * @param {number} props.userAverageSessions.sessions[].day - The day of the session.
+ * @param {number} props.userAverageSessions.sessions[].sessionLength - The length of the session.
+ * @returns {JSX.Element} The AvgSessionsChart React component.
+ */
+
 const AvgSessionsChart = (props) => {
   console.log("AvgSessionsChart props:", props);
 

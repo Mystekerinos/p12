@@ -1,6 +1,15 @@
 import React from "react";
 import { PieChart, Pie, ResponsiveContainer } from "recharts";
 
+/**
+ * A component to display objective data using a pie chart.
+ * @param {object} props - The props object.
+ * @param {object} props.objectiveData - The objective data object containing the score information.
+ * @param {number} props.objectiveData.score - The overall score.
+ * @param {number} props.objectiveData.todayScore - The score achieved today.
+ * @returns {JSX.Element} The ObjectiveChart React component.
+ */
+
 const ObjectiveChart = (props) => {
   console.log("ObjectiveChartprops", props);
   const data = [

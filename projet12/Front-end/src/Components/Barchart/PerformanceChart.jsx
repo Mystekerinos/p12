@@ -9,6 +9,16 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+/**
+ * A component to display performance data using a radar chart.
+ * @param {object} props - The props object.
+ * @param {object} props.performanceData - The performance data object containing data to be displayed.
+ * @param {Array} props.performanceData.data - An array of performance data items.
+ * @param {number} props.performanceData.data[].kind - The kind of performance data (1 for Intensity, 2 for Speed, etc.).
+ * @param {number} props.performanceData.data[].value - The value of the performance data.
+ * @returns {JSX.Element} The PerformanceChart React component.
+ */
+
 const PerformanceChart = (props) => {
   const { performanceData } = props;
 

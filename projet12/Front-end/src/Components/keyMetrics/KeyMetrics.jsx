@@ -1,6 +1,13 @@
-// KeyMetrics.jsx
 import React from "react";
 import "./KeyMetrics.css";
+
+/**
+ * Reusable component to display key information.
+ * @param {string} icon The URL of the icon to display.
+ * @param {string|number} value The value to display.
+ * @param {string} name The name or title associated with the value.
+ * @returns {JSX.Element|null} The KeyMetrics React component or null if required props are not provided.
+ */
 
 const KeyMetrics = (props) => {
   if (!props || !props.icon || !props.value || !props.name) {

@@ -10,6 +10,16 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+/**
+ * A component to display daily activity using a bar chart.
+ * @param {object} props - The props object.
+ * @param {object} props.userActivity - The user activity data object.
+ * @param {Array} props.userActivity.sessions - An array of daily activity sessions.
+ * @param {number} props.userActivity.sessions[].kilogram - The weight for the day.
+ * @param {number} props.userActivity.sessions[].calories - The calories burned for the day.
+ * @returns {JSX.Element} The ActivityBar React component.
+ */
+
 const ActivityBar = (props) => {
   if (!props.userActivity) {
     return <div>Aucune donnée d'activité utilisateur trouvée.</div>;
