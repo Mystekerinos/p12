@@ -18,6 +18,12 @@ const ObjectiveChart = (props) => {
       value: props.objectiveData.score || props.objectiveData.todayScore,
       fill: "#E60000",
     },
+    {
+      name: "Group B",
+      value:
+        1 - props.objectiveData.score || 1 - props.objectiveData.todayScore,
+      fill: "#FFFFFF",
+    },
   ];
   console.log("data", data);
   const scorePercentage = data[0].value * 100;
