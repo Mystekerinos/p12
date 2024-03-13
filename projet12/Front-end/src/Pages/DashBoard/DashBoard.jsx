@@ -12,6 +12,7 @@ import proteinesIcon from "../../Images /proteines-icon.svg";
 import AvgSessionsChart from "../../Components/Barchart/AvgSessionsChart";
 import ObjectiveChart from "../../Components/Barchart/ObjectiveChart";
 import PerformanceChart from "../../Components/Barchart/PerformanceChart";
+import PageNotFound from "../PageNotFound/PageNotFound";
 import {
   USER_MAIN_DATA,
   USER_ACTIVITY,
@@ -39,6 +40,9 @@ const DashBoard = () => {
   const userAverageSessionsData = AverageSessionsData.find(
     (user) => user.userId === parseInt(userId)
   );
+  if (!currentUserData) {
+    return <PageNotFound />;
+  }
   return (
     <div>
       <Header />
