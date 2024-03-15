@@ -1,9 +1,10 @@
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { fetchData } from "../../utils/FetchData";
 import Header from "../../Components/Header/Header";
 import SideBar from "../../Components/SideBar/SideBar";
 import "./DashBoard.css";
 import ActivityBar from "../../Components/Barchart/ActivityBar";
-import React, { useState } from "react";
 import KeyMetrics from "../../Components/keyMetrics/KeyMetrics";
 import caloriesIcon from "../../Images /calories-icon.svg";
 import glucidesIcon from "../../Images /glucides-icon.svg";
@@ -21,6 +22,36 @@ import {
 } from "../../data/data";
 const DashBoard = () => {
   const { userId } = useParams();
+
+  // const [userData, setUserData] = useState();
+  // const [performanceData, setPerformanceData] = useState();
+  // const [activityData, setActivityData] = useState();
+  // const [averageSessionsData, setAverageSessionsData] = useState();
+
+  // const [userData] = useState(USER_MAIN_DATA);
+  // const [objectiveData] = useState(USER_MAIN_DATA);
+  // const [performanceData] = useState(USER_PERFORMANCE);
+  // const [activityData] = useState(USER_ACTIVITY);
+  // const [AverageSessionsData] = useState(USER_AVERAGE_SESSIONS);
+
+  // useEffect(() => {
+  //   fetchData(`/user/${userId}`)
+  //     .then((data) => setUserData(data))
+  //     .catch((error) => console.error(error));
+  //   fetchData(`/user/${userId}/performance`)
+  //     .then((data) => setPerformanceData(data))
+  //     .catch((error) => console.error(error));
+  //   fetchData(`/user/${userId}/activity`)
+  //     .then((data) => setActivityData(data))
+  //     .catch((error) => console.error(error));
+  //   fetchData(`/user/${userId}/average-sessions`)
+  //     .then((data) => setAverageSessionsData(data))
+  //     .catch((error) => console.error(error));
+  // }, [userId]);
+
+  // if (!userData || !performanceData || !activityData || !averageSessionsData) {
+  //   return <PageNotFound />;
+  // }
 
   const [userData] = useState(USER_MAIN_DATA);
   const [objectiveData] = useState(USER_MAIN_DATA);
