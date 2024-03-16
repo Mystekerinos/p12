@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
-import { fetchData } from "../../utils/FetchData";
 import Header from "../../Components/Header/Header";
 import SideBar from "../../Components/SideBar/SideBar";
+import useApiData from "../../utils/useApiData";
 import "./DashBoard.css";
 import ActivityBar from "../../Components/Barchart/ActivityBar";
-import KeyMetrics from "../../Components/keyMetrics/KeyMetrics";
+import KeyMetrics from "../../Components/KeyMetrics/KeyMetrics";
 import caloriesIcon from "../../Images /calories-icon.svg";
 import glucidesIcon from "../../Images /glucides-icon.svg";
 import lipidesIcon from "../../Images /lipides-icon.svg";
@@ -14,66 +14,55 @@ import AvgSessionsChart from "../../Components/Barchart/AvgSessionsChart";
 import ObjectiveChart from "../../Components/Barchart/ObjectiveChart";
 import PerformanceChart from "../../Components/Barchart/PerformanceChart";
 import PageNotFound from "../PageNotFound/PageNotFound";
-import {
-  USER_MAIN_DATA,
-  USER_ACTIVITY,
-  USER_AVERAGE_SESSIONS,
-  USER_PERFORMANCE,
-} from "../../data/data";
-const DashBoard = () => {
+
+const Dashboard = () => {
   const { userId } = useParams();
 
-  // const [userData, setUserData] = useState();
-  // const [performanceData, setPerformanceData] = useState();
-  // const [activityData, setActivityData] = useState();
-  // const [averageSessionsData, setAverageSessionsData] = useState();
+  // Utilisation du hook personnalisé pour récupérer les données de l'API
+  const { userData, performanceData, activityData, userAverageSessionsData } =
+    useApiData(userId);
 
-  // const [userData] = useState(USER_MAIN_DATA);
-  // const [objectiveData] = useState(USER_MAIN_DATA);
-  // const [performanceData] = useState(USER_PERFORMANCE);
-  // const [activityData] = useState(USER_ACTIVITY);
-  // const [AverageSessionsData] = useState(USER_AVERAGE_SESSIONS);
+  console.log("userData:", userData);
+  console.log("performanceData:", performanceData);
+  console.log("activityData:", activityData);
 
-  // useEffect(() => {
-  //   fetchData(`/user/${userId}`)
-  //     .then((data) => setUserData(data))
-  //     .catch((error) => console.error(error));
-  //   fetchData(`/user/${userId}/performance`)
-  //     .then((data) => setPerformanceData(data))
-  //     .catch((error) => console.error(error));
-  //   fetchData(`/user/${userId}/activity`)
-  //     .then((data) => setActivityData(data))
-  //     .catch((error) => console.error(error));
-  //   fetchData(`/user/${userId}/average-sessions`)
-  //     .then((data) => setAverageSessionsData(data))
-  //     .catch((error) => console.error(error));
-  // }, [userId]);
+  // Vérification si les données sont chargées
+  if (!userData || !performanceData || !activityData) {
+    console.log("passe1");
+    return <PageNotFound />;
+  }
+  console.log("performanceData:", performanceData);
 
-  // if (!userData || !performanceData || !activityData || !averageSessionsData) {
+  // if (!Array.isArray(performanceData) || performanceData.length === 0) {
+  //   console.log(
+  //     "passe2",
+  //     !Array.isArray(performanceData),
+  //     performanceData.length === 0,
+  //     performanceData
+  //   );
   //   return <PageNotFound />;
   // }
 
-  const [userData] = useState(USER_MAIN_DATA);
-  const [objectiveData] = useState(USER_MAIN_DATA);
-  const [performanceData] = useState(USER_PERFORMANCE);
-  const [activityData] = useState(USER_ACTIVITY);
-  const [AverageSessionsData] = useState(USER_AVERAGE_SESSIONS);
-  const currentUserData = userData.find((user) => user.id === parseInt(userId));
-  const userperformanceData = performanceData.find(
-    (user) => user.userId === parseInt(userId)
-  );
-  const userObjectiveData = objectiveData.find(
-    (user) => user.id === parseInt(userId)
-  );
-  const userActivityData = activityData.find(
-    (user) => user.userId === parseInt(userId)
-  );
-  const userAverageSessionsData = AverageSessionsData.find(
-    (user) => user.userId === parseInt(userId)
-  );
-  if (!currentUserData) {
+  // Récupération des données de l'utilisateur courant
+  const currentUserData = userData;
+  const userPerformanceData = performanceData;
+  const userActivityData = activityData;
+  const userAverageSessionsDataM = userAverageSessionsData;
+  // const currentUserData = userData.find((user) => user.id === parseInt(userId));
+  // const userPerformanceData = performanceData
+  //   ? performanceData.find((user) => user.userId === parseInt(userId))
+  //   : null;
+  // const userActivityData = activityData.find(
+  //   (user) => user.userId === parseInt(userId)
+  // );
+  console.log("currentUserData:", currentUserData);
+  console.log("userPerformanceData:", userPerformanceData);
+  console.log("userActivityData:", userActivityData);
+  // Vérification si l'utilisateur courant existe
+  if (!currentUserData || !userPerformanceData || !userActivityData) {
     return <PageNotFound />;
   }
+
   return (
     <div>
       <Header />
@@ -101,13 +90,15 @@ const DashBoard = () => {
                 <div className="avgSessions-container">
                   <AvgSessionsChart
                     userAverageSessions={userAverageSessionsData}
-                  />
+                  />{" "}
+                  {/* userAverageSessionsData n'est pas défini ici */}
                 </div>
                 <div className="performance-container">
-                  <PerformanceChart performanceData={userperformanceData} />
+                  <PerformanceChart performanceData={userPerformanceData} />
                 </div>
                 <div className="objective-container">
-                  <ObjectiveChart objectiveData={userObjectiveData} />
+                  <ObjectiveChart objectiveData={currentUserData} />{" "}
+                  {/* userObjectiveData n'est pas défini ici */}
                 </div>
               </div>
             </div>
@@ -148,4 +139,4 @@ const DashBoard = () => {
   );
 };
 
-export default DashBoard;
+export default Dashboard;
