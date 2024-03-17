@@ -67,7 +67,8 @@ column-gap: 5%;
 
 .dashboard-header {
     display: flex;
-    flex-flow: column nowrap;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
     font-weight: 500;
     font-size: 14px;

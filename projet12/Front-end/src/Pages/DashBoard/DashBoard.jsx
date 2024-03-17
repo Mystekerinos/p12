@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ReactSwitch from "react-switch";
 import { useParams } from "react-router-dom";
 import Header from "../../Components/Header/Header";
 import SideBar from "../../Components/SideBar/SideBar";
@@ -70,20 +71,26 @@ const Dashboard = () => {
       <main className="main">
         <SideBar />
         <section className="dashboard">
-          <h1 className="dashboard-header-greeting">
-            Bonjour{" "}
-            <span className="dashboard-header-name">
-              {currentUserData?.userInfos.firstName}
-            </span>
-          </h1>
-          <label>
-            Utiliser les données de l'API :
-            <input
-              type="checkbox"
-              checked={useApi}
-              onChange={() => setUseApi(!useApi)}
-            />
-          </label>
+          <div className="dashboard-header">
+            <h1 className="dashboard-header-greeting">
+              Bonjour{" "}
+              <span className="dashboard-header-name">
+                {currentUserData?.userInfos.firstName}
+              </span>
+            </h1>
+            <div className="toggle-button-container">
+              <span className="toggle-label">Mock</span>
+              <ReactSwitch
+                checked={useApi}
+                onChange={() => setUseApi(!useApi)}
+                onColor="#86d3ff"
+                offColor="#ccc"
+                checkedIcon={false}
+                uncheckedIcon={false}
+              />
+              <span className="toggle-label">API</span>
+            </div>
+          </div>
           <p className="dashboard-header-message">
             Félicitations ! Vous avez explosé vos objectifs hier 👏
           </p>
