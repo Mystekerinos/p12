@@ -1,5 +1,3 @@
-// utils/useApiData.js
-
 import { useState, useEffect } from "react";
 import { fetchData } from "./FetchData";
 
@@ -8,7 +6,6 @@ const useApiData = (userId) => {
   const [performanceData, setPerformanceData] = useState(undefined);
   const [activityData, setActivityData] = useState(undefined);
   const [averageSessions, setAverageSessions] = useState(undefined);
-  // Définissez d'autres états pour les données si nécessaire
 
   useEffect(() => {
     fetchData(`/user/${userId}`)
@@ -26,8 +23,6 @@ const useApiData = (userId) => {
     fetchData(`/user/${userId}/average-sessions`)
       .then((data) => setAverageSessions(data.data))
       .catch((error) => console.error(error));
-
-    // Ajoutez d'autres appels à fetchData pour récupérer d'autres données si nécessaire
   }, [userId]);
 
   return { userData, performanceData, activityData, averageSessions };
