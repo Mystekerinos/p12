@@ -19,15 +19,16 @@ const Dashboard = () => {
   const { userId } = useParams();
 
   // Utilisation du hook personnalisé pour récupérer les données de l'API
-  const { userData, performanceData, activityData, userAverageSessionsData } =
+  const { userData, performanceData, activityData, averageSessions } =
     useApiData(userId);
 
   console.log("userData:", userData);
   console.log("performanceData:", performanceData);
   console.log("activityData:", activityData);
+  console.log("averageSessions:", averageSessions);
 
   // Vérification si les données sont chargées
-  if (!userData || !performanceData || !activityData) {
+  if (!userData || !performanceData || !activityData || !averageSessions) {
     console.log("passe1");
     return <PageNotFound />;
   }
@@ -47,7 +48,7 @@ const Dashboard = () => {
   const currentUserData = userData;
   const userPerformanceData = performanceData;
   const userActivityData = activityData;
-  const userAverageSessionsDataM = userAverageSessionsData;
+  const userAverageSessionsData = averageSessions;
   // const currentUserData = userData.find((user) => user.id === parseInt(userId));
   // const userPerformanceData = performanceData
   //   ? performanceData.find((user) => user.userId === parseInt(userId))
@@ -58,8 +59,15 @@ const Dashboard = () => {
   console.log("currentUserData:", currentUserData);
   console.log("userPerformanceData:", userPerformanceData);
   console.log("userActivityData:", userActivityData);
+  console.log("userAverageSessionsData:", userAverageSessionsData);
   // Vérification si l'utilisateur courant existe
-  if (!currentUserData || !userPerformanceData || !userActivityData) {
+  if (
+    !currentUserData ||
+    !userPerformanceData ||
+    !userActivityData ||
+    !userAverageSessionsData
+  ) {
+    console.log("passe2");
     return <PageNotFound />;
   }
 
