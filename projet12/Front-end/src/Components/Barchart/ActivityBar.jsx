@@ -9,25 +9,25 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import PropTypes from "prop-types";
 
 /**
  * A component to display daily activity using a bar chart.
  * @param {object} props - The props object.
- * @param {object} props.userActivity - The user activity data object.
- * @param {Array} props.userActivity.sessions - An array of daily activity sessions.
- * @param {number} props.userActivity.sessions[].kilogram - The weight for the day.
- * @param {number} props.userActivity.sessions[].calories - The calories burned for the day.
+ * @param {Array} props.data - An array of daily activity sessions.
+ * @param {number} props.data[].kilogram - The weight for the day.
+ * @param {number} props.data[].calories - The calories burned for the day.
  * @returns {JSX.Element} The ActivityBar React component.
  */
 
 const ActivityBar = (props) => {
-  if (!props.userActivity) {
+  const { data } = props;
+  if (!data) {
     return <div>Aucune donnée d'activité utilisateur trouvée.</div>;
   }
 
-  const { userActivity } = props;
   const activityDayNumbers = () => {
-    return userActivity.sessions.map((session, index) => index + 1);
+    return data.map((session, index) => index + 1);
   };
   const renderTooltip = ({ active, payload }) => {
     if (active && payload.length) {
@@ -54,13 +54,13 @@ const ActivityBar = (props) => {
   };
   return (
     <ResponsiveContainer width="90%" height="80%">
-      <BarChart data={userActivity.sessions} barGap={12} barSize={8}>
+      <BarChart data={data} barGap={12} barSize={8}>
         <text
           x={0}
           y={20}
           textAnchor="left"
           style={{
-            fontSize: "1.8rem",
+            fontSize: "15px",
             fontWeight: 500,
             fill: "#000000",
           }}
@@ -128,6 +128,15 @@ const ActivityBar = (props) => {
       </BarChart>
     </ResponsiveContainer>
   );
+};
+
+ActivityBar.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      kilogram: PropTypes.number.isRequired,
+      calories: PropTypes.number.isRequired,
+    })
+  ).isRequired,
 };
 
 export default ActivityBar;

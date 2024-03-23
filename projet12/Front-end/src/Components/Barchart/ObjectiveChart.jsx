@@ -1,32 +1,32 @@
 import React from "react";
 import { PieChart, Pie, ResponsiveContainer } from "recharts";
-
+import PropTypes from "prop-types";
 /**
  * A component to display objective data using a pie chart.
  * @param {object} props - The props object.
- * @param {object} props.objectiveData - The objective data object containing the score information.
- * @param {number} props.objectiveData.score - The overall score.
- * @param {number} props.objectiveData.todayScore - The score achieved today.
+ * @param {object} props.data - The objective data object containing the score information.
+ * @param {number} props.data.score - The overall score.
+ * @param {number} props.data.todayScore - The score achieved today.
  * @returns {JSX.Element} The ObjectiveChart React component.
  */
 
 const ObjectiveChart = (props) => {
-  console.log("ObjectiveChartprops", props);
-  const data = [
+  const data = { props };
+  console.log("ObjectiveChartprops", data);
+  const datas = [
     {
       name: "Group A",
-      value: props.objectiveData.score || props.objectiveData.todayScore,
+      value: props.data.score || props.data.todayScore,
       fill: "#E60000",
     },
     {
       name: "Group B",
-      value:
-        1 - props.objectiveData.score || 1 - props.objectiveData.todayScore,
+      value: 1 - props.data.score || 1 - props.data.todayScore,
       fill: "#FFFFFF",
     },
   ];
-  console.log("data", data);
-  const scorePercentage = data[0].value * 100;
+  console.log("datas", datas);
+  const scorePercentage = datas[0].value * 100;
   console.log("scorePercentage", scorePercentage);
   return (
     <ResponsiveContainer width="100%" height={400}>
@@ -44,7 +44,7 @@ const ObjectiveChart = (props) => {
           Score
         </text>
         <Pie
-          data={data}
+          data={datas}
           dataKey="value"
           nameKey="score"
           cx="50%"
@@ -82,5 +82,12 @@ const ObjectiveChart = (props) => {
       </PieChart>
     </ResponsiveContainer>
   );
+};
+
+ObjectiveChart.propTypes = {
+  data: PropTypes.shape({
+    score: PropTypes.number.isRequired,
+    todayScore: PropTypes.number.isRequired,
+  }).isRequired,
 };
 export default ObjectiveChart;

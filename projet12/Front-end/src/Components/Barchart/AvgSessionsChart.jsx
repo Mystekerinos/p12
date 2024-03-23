@@ -7,29 +7,27 @@ import {
   YAxis,
   Tooltip,
 } from "recharts";
-
+import PropTypes from "prop-types";
 /**
  * A component to display average session duration data using a line chart.
  * @param {object} props - The props object.
- * @param {object} props.userAverageSessions - The user's average session data object.
- * @param {Array} props.userAverageSessions.sessions - An array of sessions data.
- * @param {number} props.userAverageSessions.sessions[].day - The day of the session.
- * @param {number} props.userAverageSessions.sessions[].sessionLength - The length of the session.
+ * @param {object} props.data - The user's average session data object.
+ * @param {number} props.data.day - The day of the session.
+ * @param {number} props.data.sessionLength - The length of the session.
  * @returns {JSX.Element} The AvgSessionsChart React component.
  */
 
 const AvgSessionsChart = (props) => {
   console.log("AvgSessionsChart props:", props);
-
-  if (!props.userAverageSessions || !props.userAverageSessions.sessions) {
+  const { data } = props;
+  if (!data) {
     return <div>Aucune donnée d'activité utilisateur trouvée.</div>;
   }
 
-  const { userAverageSessions } = props;
   console.log("AvgSessionsChart props6:", props);
   const dayLetters = ["L", "M", "M", "J", "V", "S", "D"];
-  console.log("userAverageSessions.sessions", userAverageSessions.sessions);
-  const data = userAverageSessions.sessions.map((session, index) => ({
+  console.log("userAverageSessions.sessions", data.sessions);
+  const datas = data.map((session, index) => ({
     day: session.day,
     sessionLength: session.sessionLength,
   }));
@@ -52,11 +50,11 @@ const AvgSessionsChart = (props) => {
     }
   };
 
-  console.log("AvgSessionsChart data:", data);
+  console.log("AvgSessionsChart datas:", datas);
   return (
     <ResponsiveContainer width="90%" height="90%">
       <LineChart
-        data={data}
+        data={datas}
         margin={{ top: 20, right: 10, left: 10, bottom: 20 }}
       >
         <defs>
@@ -117,4 +115,14 @@ const AvgSessionsChart = (props) => {
     </ResponsiveContainer>
   );
 };
+
+AvgSessionsChart.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      day: PropTypes.number.isRequired,
+      sessionLength: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+};
+
 export default AvgSessionsChart;

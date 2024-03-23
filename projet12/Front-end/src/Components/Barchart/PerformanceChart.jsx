@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types"; // Importation de PropTypes
 import {
   Radar,
   RadarChart,
@@ -12,17 +13,18 @@ import {
 /**
  * A component to display performance data using a radar chart.
  * @param {object} props - The props object.
- * @param {object} props.performanceData - The performance data object containing data to be displayed.
- * @param {Array} props.performanceData.data - An array of performance data items.
- * @param {number} props.performanceData.data[].kind - The kind of performance data (1 for Intensity, 2 for Speed, etc.).
- * @param {number} props.performanceData.data[].value - The value of the performance data.
+ * @param {Array} props.data - An array of performance data items.
+ * @param {number} props.data[].kind - The kind of performance data (1 for Intensity, 2 for Speed, etc.).
+ * @param {number} props.data[].value - The value of the performance data.
  * @returns {JSX.Element} The PerformanceChart React component.
  */
 
 const PerformanceChart = (props) => {
-  const { performanceData } = props;
+  const { data } = props;
 
-  if (!performanceData) {
+  console.log("DATA", data);
+
+  if (!data) {
     return <div>Aucune donnée de performance trouvée.</div>;
   }
 
@@ -35,7 +37,7 @@ const PerformanceChart = (props) => {
     6: "Cardio",
   };
 
-  const data = performanceData.data.map((item) => ({
+  const datas = data.map((item) => ({
     subject: kindMapping[item.kind],
     A: item.value,
     B: 100,
@@ -44,7 +46,7 @@ const PerformanceChart = (props) => {
 
   return (
     <ResponsiveContainer width="100%" height={400}>
-      <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
+      <RadarChart cx="50%" cy="50%" outerRadius="80%" data={datas}>
         <PolarGrid />
         <PolarAngleAxis dataKey="subject" />
         <PolarRadiusAxis angle={30} domain={[0, 150]} tick={() => null} />
@@ -58,6 +60,15 @@ const PerformanceChart = (props) => {
       </RadarChart>
     </ResponsiveContainer>
   );
+};
+
+PerformanceChart.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      kind: PropTypes.number.isRequired,
+      value: PropTypes.number.isRequired,
+    })
+  ).isRequired,
 };
 
 export default PerformanceChart;

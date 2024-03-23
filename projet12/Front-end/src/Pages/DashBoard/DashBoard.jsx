@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import ReactSwitch from "react-switch";
 import { useParams } from "react-router-dom";
 import Header from "../../Components/Header/Header";
@@ -24,13 +25,13 @@ import {
 
 const Dashboard = () => {
   const { userId } = useParams();
-  const [useApi, setUseApi] = useState(true);
+  const [useApi, setUseApi] = React.useState(true);
 
   // Données mockées
-  const [userDataMock] = useState(USER_MAIN_DATA);
-  const [performanceDataMock] = useState(USER_PERFORMANCE);
-  const [activityDataMock] = useState(USER_ACTIVITY);
-  const [averageSessionsMock] = useState(USER_AVERAGE_SESSIONS);
+  const [userDataMock] = React.useState(USER_MAIN_DATA);
+  const [performanceDataMock] = React.useState(USER_PERFORMANCE);
+  const [activityDataMock] = React.useState(USER_ACTIVITY);
+  const [averageSessionsMock] = React.useState(USER_AVERAGE_SESSIONS);
 
   // Utilisation du hook personnalisé pour récupérer les données de l'API
   const { userData, performanceData, activityData, averageSessions } =
@@ -100,19 +101,18 @@ const Dashboard = () => {
                 className="activity-container"
                 style={{ width: "100%", height: "400px" }}
               >
-                <ActivityBar userActivity={userActivityData} />
+                <ActivityBar data={userActivityData.sessions} />
               </div>
               <div className="dashboard-charts-avgSession-objective-performance">
                 <div className="avgSessions-container">
-                  <AvgSessionsChart
-                    userAverageSessions={userAverageSessionsData}
-                  />{" "}
+                  <AvgSessionsChart data={userAverageSessionsData.sessions} />
                 </div>
                 <div className="performance-container">
-                  <PerformanceChart performanceData={userPerformanceData} />
+                  <PerformanceChart data={userPerformanceData.data} />
                 </div>
                 <div className="objective-container">
-                  <ObjectiveChart objectiveData={currentUserData} />{" "}
+                  {console.log("currentUserData.data", currentUserData)}
+                  <ObjectiveChart data={currentUserData} />
                 </div>
               </div>
             </div>
@@ -121,7 +121,7 @@ const Dashboard = () => {
                 <KeyMetrics
                   icon={caloriesIcon}
                   name="Calories"
-                  value={`${currentUserData?.keyData.calorieCount}g`}
+                  value={`${currentUserData?.keyData.calorieCount}kCal`}
                 />
               </div>
               <div className="dashboard-charts-proteines dashboard-charts-all">
@@ -151,6 +151,10 @@ const Dashboard = () => {
       </main>
     </div>
   );
+};
+
+Dashboard.propTypes = {
+  userId: PropTypes.string.isRequired,
 };
 
 export default Dashboard;
