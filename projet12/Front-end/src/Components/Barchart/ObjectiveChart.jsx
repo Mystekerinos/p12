@@ -86,8 +86,8 @@ const ObjectiveChart = (props) => {
 
 ObjectiveChart.propTypes = {
   data: PropTypes.shape({
-    score: PropTypes.number.isRequired,
-    todayScore: PropTypes.number.isRequired,
+    score: PropTypes.number,
+    todayScore: PropTypes.number,
   }).isRequired,
 };
 export default ObjectiveChart;
