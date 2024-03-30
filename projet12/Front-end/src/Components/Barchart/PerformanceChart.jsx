@@ -56,7 +56,6 @@ const PerformanceChart = (props) => {
           fill="#FF0101B2"
           fillOpacity={0.6}
         />
-        <Legend wrapperStyle={{ color: "#000000" }} />
       </RadarChart>
     </ResponsiveContainer>
   );
