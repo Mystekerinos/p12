@@ -60,45 +60,25 @@ const useApiData = (userId) => {
       { day: 0, sessionLength: -1 },
     ],
   });
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
   useEffect(() => {
-    const fetchDataForUser = async () => {
-      try {
-        setIsLoading(true);
-        const [
-          userDataRes,
-          performanceDataRes,
-          activityDataRes,
-          averageSessionsRes,
-        ] = await Promise.all([
-          fetchData(`/user/${userId}`),
-          fetchData(`/user/${userId}/performance`),
-          fetchData(`/user/${userId}/activity`),
-          fetchData(`/user/${userId}/average-sessions`),
-        ]);
-        setUserData(userDataRes.data);
-        setPerformanceData(performanceDataRes.data);
-        setActivityData(activityDataRes.data);
-        setAverageSessions(averageSessionsRes.data);
-        setIsLoading(false);
-      } catch (error) {
-        setError(error);
-        setIsLoading(false);
-      }
-    };
+    fetchData(`/user/${userId}`)
+      .then((data) => setUserData(data.data))
+      .catch((error) => console.error(error));
 
-    fetchDataForUser();
+    fetchData(`/user/${userId}/performance`)
+      .then((data) => setPerformanceData(data.data))
+      .catch((error) => console.error(error));
+
+    fetchData(`/user/${userId}/activity`)
+      .then((data) => setActivityData(data.data))
+      .catch((error) => console.error(error));
+
+    fetchData(`/user/${userId}/average-sessions`)
+      .then((data) => setAverageSessions(data.data))
+      .catch((error) => console.error(error));
   }, [userId]);
 
-  return {
-    userData,
-    performanceData,
-    activityData,
-    averageSessions,
-    isLoading,
-    error,
-  };
+  return { userData, performanceData, activityData, averageSessions };
 };
 
 export default useApiData;
