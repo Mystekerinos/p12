@@ -127,7 +127,6 @@ const Dashboard = () => {
                   <PerformanceChart data={userPerformanceData.data} />
                 </div>
                 <div className="objective-container">
-                  {console.log("currentUserData.data", currentUserData)}
                   <ObjectiveChart data={currentUserData} />
                 </div>
               </div>

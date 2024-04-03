@@ -4,7 +4,6 @@ import {
   Radar,
   RadarChart,
   PolarGrid,
-  Legend,
   PolarAngleAxis,
   PolarRadiusAxis,
   ResponsiveContainer,
@@ -21,8 +20,6 @@ import {
 
 const PerformanceChart = (props) => {
   const { data } = props;
-
-  console.log("DATA", data);
 
   if (!data) {
     return <div>Aucune donnée de performance trouvée.</div>;

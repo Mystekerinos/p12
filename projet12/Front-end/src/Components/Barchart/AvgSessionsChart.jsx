@@ -18,15 +18,12 @@ import PropTypes from "prop-types";
  */
 
 const AvgSessionsChart = (props) => {
-  console.log("AvgSessionsChart props:", props);
   const { data } = props;
   if (!data) {
     return <div>Aucune donnée d'activité utilisateur trouvée.</div>;
   }
 
-  console.log("AvgSessionsChart props6:", props);
   const dayLetters = ["L", "M", "M", "J", "V", "S", "D"];
-  console.log("userAverageSessions.sessions", data.sessions);
   const datas = data.map((session, index) => ({
     day: session.day,
     sessionLength: session.sessionLength,
@@ -50,7 +47,6 @@ const AvgSessionsChart = (props) => {
     }
   };
 
-  console.log("AvgSessionsChart datas:", datas);
   return (
     <ResponsiveContainer width="90%" height="90%">
       <LineChart

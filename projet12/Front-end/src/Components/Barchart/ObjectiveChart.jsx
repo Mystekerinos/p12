@@ -11,8 +11,6 @@ import PropTypes from "prop-types";
  */
 
 const ObjectiveChart = (props) => {
-  const data = { props };
-  console.log("ObjectiveChartprops", data);
   const datas = [
     {
       name: "Group A",
@@ -25,9 +23,9 @@ const ObjectiveChart = (props) => {
       fill: "#FFFFFF",
     },
   ];
-  console.log("datas", datas);
+
   const scorePercentage = datas[0].value * 100;
-  console.log("scorePercentage", scorePercentage);
+
   return (
     <ResponsiveContainer width="100%" height={400}>
       <PieChart>
