@@ -44,7 +44,6 @@ const Dashboard = () => {
   const userPerformanceData = useApi
     ? performanceData
     : performanceDataMock.find((user) => user.userId === parseInt(userId));
-  console.log("activityDataMock", activityDataMock);
   const userActivityData = useApi
     ? activityData
     : activityDataMock.find((user) => user.userId === parseInt(userId));
