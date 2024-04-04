@@ -34,14 +34,8 @@ const Dashboard = () => {
   const [averageSessionsMock] = React.useState(USER_AVERAGE_SESSIONS);
 
   // Utilisation du hook personnalisé pour récupérer les données de l'API
-  const {
-    userData,
-    performanceData,
-    activityData,
-    averageSessions,
-    isLoading,
-    error,
-  } = useApiData(userId);
+  const { userData, performanceData, activityData, averageSessions } =
+    useApiData(userId);
 
   // Récupération des données en fonction de l'état useApi
   const currentUserData = useApi
@@ -50,22 +44,13 @@ const Dashboard = () => {
   const userPerformanceData = useApi
     ? performanceData
     : performanceDataMock.find((user) => user.userId === parseInt(userId));
+  console.log("activityDataMock", activityDataMock);
   const userActivityData = useApi
     ? activityData
     : activityDataMock.find((user) => user.userId === parseInt(userId));
   const userAverageSessionsData = useApi
     ? averageSessions
     : averageSessionsMock.find((user) => user.userId === parseInt(userId));
-
-  // Affichage de la page de chargement si les données sont en cours de chargement
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  // Affichage de la page d'erreur si une erreur s'est produite lors de la récupération des données
-  if (error) {
-    return <PageNotFound />;
-  }
 
   // Vérification si les données sont chargées
   if (!userData || !performanceData || !activityData || !averageSessions) {
