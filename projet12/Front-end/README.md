@@ -6,7 +6,7 @@ git clone git@github.com:Mystekerinos/projet12.git
 
 Lancer le frontend comme suit :
 
-cd openclassrooms-projet-12
+cd projet12
 npm install
 npm start
 Le site sera alors accessible en local via l'URL :
