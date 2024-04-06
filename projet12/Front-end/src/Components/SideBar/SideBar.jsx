@@ -1,9 +1,9 @@
 import React from "react";
-import yogaLogo from "../../assets/yoga-logo.svg";
-import swimmingLogo from "../../assets/swimming-logo.svg";
-import bikeLogo from "../../assets/bike-logo.svg";
-import dumbbellLogo from "../../assets/dumbbell-logo.svg";
-import "../../css/SideBar.css";
+import yogaLogo from "../../assets/images/yoga-logo.svg";
+import swimmingLogo from "../../assets/images/swimming-logo.svg";
+import bikeLogo from "../../assets/images/bike-logo.svg";
+import dumbbellLogo from "../../assets/images/dumbbell-logo.svg";
+import "../../assets/css/SideBar.css";
 
 const SideBar = () => {
   return (

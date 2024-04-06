@@ -4,9 +4,9 @@ import {
   Routes,
   Route,
   Navigate,
-} from "react-router-dom"; 
-import DashBoard from "../src/Pages/DashBoard/DashBoard";
-import PageNotFound from "./Pages/PageNotFound/PageNotFound";
+} from "react-router-dom";
+import DashBoard from "../src/pages/DashBoard/DashBoard";
+import PageNotFound from "../src/pages/PageNotFound/PageNotFound";
 
 function App() {
   return (

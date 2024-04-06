@@ -1,4 +1,4 @@
-export async function FetchData(userId) {
+export async function apiServiceFetchData(userId) {
   try {
     const userResponse = await fetch(`http://localhost:3000/user/${userId}`);
     const activityResponse = await fetch(

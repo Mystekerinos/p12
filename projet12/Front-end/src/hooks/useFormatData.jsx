@@ -7,9 +7,9 @@ import {
   USER_ACTIVITY,
   USER_AVERAGE_SESSIONS,
 } from "../data/data";
-import { FetchData } from "../utils/FetchData";
+import { apiServiceFetchData } from "../utils/apiServiceFetchData";
 
-const FormatData = () => {
+const useFormatData = () => {
   const { userId } = useParams();
   const [useApi, setUseApi] = useState(true);
   const [userDataMock] = useState(USER_MAIN_DATA);
@@ -25,7 +25,7 @@ const FormatData = () => {
     const fetchData = async () => {
       try {
         const { userData, performanceData, activityData, averageSessions } =
-          await FetchData(userId);
+          await apiServiceFetchData(userId);
         setUserData(userData);
         setPerformanceData(performanceData);
         setActivityData(activityData);
@@ -75,4 +75,4 @@ const FormatData = () => {
   };
 };
 
-export default FormatData;
+export default useFormatData;

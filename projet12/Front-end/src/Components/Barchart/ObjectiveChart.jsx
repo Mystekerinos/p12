@@ -1,7 +1,7 @@
 import React from "react";
 import { PieChart, Pie, ResponsiveContainer } from "recharts";
 import PropTypes from "prop-types";
-import "../../css/ObjectiveChart.css";
+import "../../assets/css/ObjectiveChart.css";
 /**
  * A component to display objective data using a pie chart.
  * @param {object} props - The props object.

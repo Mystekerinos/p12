@@ -8,7 +8,7 @@ import {
   Tooltip,
 } from "recharts";
 import PropTypes from "prop-types";
-import "../../css/AvgSessionsChart.css";
+import "../../assets/css/AvgSessionsChart.css";
 /**
  * A component to display average session duration data using a line chart.
  * @param {object} props - The props object.
