@@ -24,7 +24,21 @@ const Dashboard = ({ userId }) => {
     userPerformanceData,
     userActivityData,
     userAverageSessionsData,
+    loadingUserData,
+    loadingPerformanceData,
+    loadingActivityData,
+    loadingAverageSessions,
   } = useFormatData();
+
+  if (
+    useApi &&
+    (loadingUserData ||
+      loadingPerformanceData ||
+      loadingActivityData ||
+      loadingAverageSessions)
+  ) {
+    return <div>Loading...</div>;
+  }
 
   if (
     !currentUserData ||

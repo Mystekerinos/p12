@@ -31,6 +31,11 @@ const useFormatData = () => {
   const [activityData, setActivityData] = useState(null);
   const [averageSessions, setAverageSessions] = useState(null);
 
+  const [loadingUserData, setLoadingUserData] = useState(true);
+  const [loadingPerformanceData, setLoadingPerformanceData] = useState(true);
+  const [loadingActivityData, setLoadingActivityData] = useState(true);
+  const [loadingAverageSessions, setLoadingAverageSessions] = useState(true);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -40,6 +45,10 @@ const useFormatData = () => {
         setPerformanceData(performanceData);
         setActivityData(activityData);
         setAverageSessions(averageSessions);
+        setLoadingUserData(false);
+        setLoadingPerformanceData(false);
+        setLoadingActivityData(false);
+        setLoadingAverageSessions(false);
       } catch (error) {
         console.error("Error fetching data:", error.message);
       }
@@ -81,6 +90,10 @@ const useFormatData = () => {
     userPerformanceData,
     userActivityData,
     userAverageSessionsData,
+    loadingUserData,
+    loadingPerformanceData,
+    loadingActivityData,
+    loadingAverageSessions,
   };
 };
 
