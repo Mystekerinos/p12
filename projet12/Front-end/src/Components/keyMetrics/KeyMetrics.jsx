@@ -1,5 +1,6 @@
 import React from "react";
 import "../../assets/css/KeyMetrics.css";
+import PropTypes from "prop-types";
 /**
  * Reusable component to display key information.
  * @param {string} icon The URL of the icon to display.
@@ -23,5 +24,10 @@ const KeyMetrics = (props) => {
     </div>
   );
 };
-
+// Déclaration des types de props
+KeyMetrics.propTypes = {
+  icon: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  name: PropTypes.string.isRequired,
+};
 export default KeyMetrics;

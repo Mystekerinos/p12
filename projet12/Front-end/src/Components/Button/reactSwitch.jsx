@@ -1,5 +1,6 @@
 import React from "react";
 import Switch from "react-switch";
+import PropTypes from "prop-types";
 
 /**
  * Composant React représentant un interrupteur.
@@ -20,5 +21,8 @@ const ReactSwitch = ({ checked, onChange }) => {
     />
   );
 };
-
+ReactSwitch.propTypes = {
+  checked: PropTypes.bool.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
 export default ReactSwitch;

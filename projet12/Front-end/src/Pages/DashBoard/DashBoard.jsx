@@ -3,18 +3,18 @@ import PropTypes from "prop-types";
 import Header from "../../components/Header/Header";
 import SideBar from "../../components/SideBar/SideBar";
 import "../../assets/css/DashBoard.css";
-import ActivityBar from "../../components/barchart/ActivityBar";
-import KeyMetrics from "../../components/KeyMetrics/KeyMetrics";
+import ActivityBar from "../../components/Barchart/ActivityBar";
+import KeyMetrics from "../../components/keyMetrics/KeyMetrics";
 import caloriesIcon from "../../assets/images/calories-icon.svg";
 import glucidesIcon from "../../assets/images/glucides-icon.svg";
 import lipidesIcon from "../../assets/images/lipides-icon.svg";
 import proteinesIcon from "../../assets/images/proteines-icon.svg";
-import AvgSessionsChart from "../../components/barchart/AvgSessionsChart";
-import ObjectiveChart from "../../components/barchart/ObjectiveChart";
-import PerformanceChart from "../../components/barchart/PerformanceChart";
+import AvgSessionsChart from "../../components/Barchart/AvgSessionsChart";
+import ObjectiveChart from "../../components/Barchart/ObjectiveChart";
+import PerformanceChart from "../../components/Barchart/PerformanceChart";
 import PageNotFound from "../PageNotFound/PageNotFound";
 import useFormatData from "../../hooks/useFormatData";
-import ReactSwitch from "../../components/button/ReactSwitch";
+import ReactSwitch from "../../components/Button/ReactSwitch";
 
 const Dashboard = ({ userId }) => {
   const {
@@ -25,13 +25,7 @@ const Dashboard = ({ userId }) => {
     userActivityData,
     userAverageSessionsData,
   } = useFormatData();
-  console.log(
-    "currentUserData,userPerformanceData,userActivityData,userAverageSessionsData",
-    currentUserData,
-    userPerformanceData,
-    userActivityData,
-    userAverageSessionsData
-  );
+
   if (
     !currentUserData ||
     !userPerformanceData ||

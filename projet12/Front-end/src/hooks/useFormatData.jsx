@@ -8,7 +8,17 @@ import {
   USER_AVERAGE_SESSIONS,
 } from "../data/data";
 import { apiServiceFetchData } from "../utils/apiServiceFetchData";
-
+/**
+ * Custom hook for formatting user data.
+ * @returns {{
+ *   useApi: boolean,
+ *   toggleDataMode: () => void,
+ *   currentUserData: Object | null,
+ *   userPerformanceData: Object | null,
+ *   userActivityData: Object | null,
+ *   userAverageSessionsData: Object | null
+ * }} Formatted user data.
+ */
 const useFormatData = () => {
   const { userId } = useParams();
   const [useApi, setUseApi] = useState(true);
@@ -38,15 +48,12 @@ const useFormatData = () => {
     fetchData();
   }, [userId]);
 
-  useEffect(() => {
-    console.log(
-      "props1",
-      userData,
-      performanceData,
-      activityData,
-      averageSessions
-    );
-  }, [userData, performanceData, activityData, averageSessions]);
+  useEffect(() => {}, [
+    userData,
+    performanceData,
+    activityData,
+    averageSessions,
+  ]);
 
   const currentUserData = useApi
     ? userData
@@ -60,7 +67,9 @@ const useFormatData = () => {
   const userAverageSessionsData = useApi
     ? averageSessions
     : averageSessionsMock.find((user) => user.userId === parseInt(userId));
-
+  /**
+   * Function to toggle between API and mock data mode.
+   */
   const toggleDataMode = () => {
     setUseApi((prevMode) => !prevMode);
   };
