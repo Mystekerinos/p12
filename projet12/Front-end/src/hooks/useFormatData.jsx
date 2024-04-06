@@ -8,6 +8,7 @@ import {
   USER_AVERAGE_SESSIONS,
 } from "../data/data";
 import { apiServiceFetchData } from "../utils/apiServiceFetchData";
+
 /**
  * Custom hook for formatting user data.
  * @returns {{
@@ -16,7 +17,11 @@ import { apiServiceFetchData } from "../utils/apiServiceFetchData";
  *   currentUserData: Object | null,
  *   userPerformanceData: Object | null,
  *   userActivityData: Object | null,
- *   userAverageSessionsData: Object | null
+ *   userAverageSessionsData: Object | null,
+ *   loadingUserData: boolean,
+ *   loadingPerformanceData: boolean,
+ *   loadingActivityData: boolean,
+ *   loadingAverageSessions: boolean
  * }} Formatted user data.
  */
 const useFormatData = () => {
