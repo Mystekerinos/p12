@@ -2,6 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../../assets/css/PageNotFound.css";
 
+/**
+ * Composant pour afficher une page d'erreur 404.
+ * @component
+ */
 const PageNotFound = () => {
   return (
     <div className="page-not-found">

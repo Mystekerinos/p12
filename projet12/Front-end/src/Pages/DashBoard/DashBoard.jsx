@@ -16,6 +16,12 @@ import PageNotFound from "../PageNotFound/PageNotFound";
 import useFormatData from "../../hooks/useFormatData";
 import ReactSwitch from "../../components/Button/ReactSwitch";
 
+/**
+ * Component for displaying the user's dashboard.
+ * @param {object} props - The props object.
+ * @param {string} props.userId - The ID of the user.
+ * @returns {JSX.Element} The Dashboard React component.
+ */
 const Dashboard = ({ userId }) => {
   const {
     useApi,
