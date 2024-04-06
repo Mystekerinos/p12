@@ -1,21 +1,45 @@
-
 .AvgSessionschart-title {
     font-size: 15px;
     font-weight: 500;
     fill: #FFFFFF;
     fill-opacity: 0.5;
 }
-
-
 @media only screen and (max-width: 1700px) {
     .AvgSessionschart-title {
         font-size: 1.8rem;
     }
 }
 
-
-@media only screen and (max-width: 480px) {
-    .chart-title {
-        font-size: 1rem;
-    }
+li {
+    list-style: none;
 }
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+}
+
+
+
+.lineChart {
+    position: relative;
+    background-color: #FF0000;
+    border-radius: 0.5rem;
+}
+
+.lineChart_tooltip {
+    background-color: #fff;
+    padding: 1rem;
+}
+
+.lineChart_overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+

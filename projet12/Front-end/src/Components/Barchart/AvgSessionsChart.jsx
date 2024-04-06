@@ -1,116 +1,128 @@
-import React from "react";
+import React, { PureComponent } from "react";
+import PropTypes from "prop-types";
 import {
   Line,
   LineChart,
   ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis,
-  Tooltip,
 } from "recharts";
-import PropTypes from "prop-types";
 import "../../assets/css/AvgSessionsChart.css";
+
 /**
- * A component to display average session duration data using a line chart.
- * @param {object} props - The props object.
- * @param {object} props.data - The user's average session data object.
- * @param {number} props.data.day - The day of the session.
- * @param {number} props.data.sessionLength - The length of the session.
- * @returns {JSX.Element} The AvgSessionsChart React component.
+ * @typedef {Object} SessionData
+ * @property {number} day - Le jour de la session.
+ * @property {number} sessionLength - La durée de la session.
  */
 
-const AvgSessionsChart = (props) => {
-  const { data } = props;
-  if (!data) {
-    return <div>Aucune donnée d'activité utilisateur trouvée.</div>;
-  }
+/**
+ * @typedef {Object} AvgSessionsChartProps
+ * @property {SessionData[]} data - Les données des sessions.
+ */
 
-  const dayLetters = ["L", "M", "M", "J", "V", "S", "D"];
-  const datas = data.map((session, index) => ({
-    day: session.day,
-    sessionLength: session.sessionLength,
-  }));
-  const renderTooltip = ({ active, payload }) => {
-    if (active && payload.length) {
-      return (
-        <div
-          style={{
-            background: "#FFFFFF",
-            color: "#000000",
-            padding: "1em 1em",
-            textAlign: "center",
-            fontSize: "1rem",
-            fontWeight: "500",
-          }}
-        >
-          <p>{payload[0].value} min</p>
-        </div>
-      );
+export default class AvgSessionsChart extends PureComponent {
+  /**
+   * @param {AvgSessionsChartProps} props - Les props pour le composant.
+   */
+  render() {
+    const { data } = this.props;
+
+    if (!data || data.length === 0) {
+      return <div>Aucune donnée d'activité utilisateur trouvée.</div>;
     }
-  };
 
-  return (
-    <ResponsiveContainer width="100%" height="100%">
-      <LineChart
-        data={datas}
-        margin={{ top: 20, right: 10, left: 10, bottom: 20 }}
-      >
-        <defs>
-          <linearGradient id="lineGradient">
-            <stop offset="0%" stopColor="#FFFFFF" stopOpacity="30%" />
-            <stop offset="100%" stopColor="#FFFFFF" stopOpacity="100%" />
-          </linearGradient>
-        </defs>
-        <text
-          x={10}
-          y={30}
-          textAnchor="left"
-          className="AvgSessionschart-title"
+    const dayLetters = ["L", "M", "M", "J", "V", "S", "D"];
+    const datas = data.map((session) => ({
+      day: dayLetters[session.day - 1],
+      sessionLength: session.sessionLength,
+    }));
+
+    const CustomTooltip = ({ active, payload }) => {
+      if (active && payload) {
+        return (
+          <div className="lineChart_tooltip">{`${payload[0].value} min`}</div>
+        );
+      }
+      return null;
+    };
+
+    const showOverlay = (e) => {
+      let overlay = document.querySelector(".lineChart_overlay");
+
+      if (e.isTooltipActive) {
+        let windowWidth = overlay.offsetWidth;
+        let mouseXpercent = Math.floor(
+          (e.activeCoordinate.x / windowWidth) * 100
+        );
+
+        overlay.style.background = `linear-gradient(to right, rgb(255,0,0) ${mouseXpercent}%, rgba(0,0,0,0.1) ${mouseXpercent}%`;
+      } else {
+        overlay.style.background = "transparent";
+      }
+    };
+
+    const hideOverlay = () => {
+      let overlay = document.querySelector(".lineChart_overlay");
+      overlay.style.background = "transparent";
+    };
+
+    return (
+      <ResponsiveContainer width="100%" height="100%" className="lineChart">
+        <div className="lineChart_overlay"></div>
+        <LineChart
+          data={datas}
+          margin={{
+            top: 0,
+            right: 20,
+            left: 20,
+            bottom: 20,
+          }}
+          onMouseMove={showOverlay}
+          onMouseOut={hideOverlay}
         >
-          <tspan>Durée moyenne des</tspan>
-          <tspan x={10} dy="1.2em">
-            sessions
-          </tspan>
-        </text>
-        <XAxis
-          dataKey="day"
-          axisLine={false}
-          tickLine={false}
-          tick={{ fill: "#FFFFFF", fillOpacity: "50%" }}
-          stroke="#FFFFFF"
-          tickMargin={10}
-          tickFormatter={(day) => dayLetters[day - 1]}
-        />
-        <YAxis
-          dataKey="sessionLength"
-          hide={true}
-          domain={["dataMin -20", "dataMax + 50"]}
-        />
-        <Line
-          dataKey="sessionLength"
-          type="natural"
-          stroke="url(#lineGradient)"
-          strokeWidth={2.5}
-          dot={false}
-          activeDot={{
-            stroke: "#FFFFFF",
-            strokeOpacity: "50%",
-            strokeWidth: 10,
-          }}
-        />
-        <Tooltip
-          content={renderTooltip}
-          cursor={{
-            stroke: "#000000",
-            strokeOpacity: "10%",
-            strokeWidth: "50%",
-            height: "100%",
-          }}
-        />
-      </LineChart>
-    </ResponsiveContainer>
-  );
-};
+          <text
+            x={20}
+            y={20}
+            fill="#ffffff"
+            opacity={0.5}
+            fontWeight={500}
+            textAnchor="left"
+            dominantBaseline="central"
+            className="AvgSessionschart-title"
+          >
+            <tspan>Durée moyenne des</tspan>
+            <tspan x={20} dy="1.2em">
+              sessions
+            </tspan>
+          </text>
+          <XAxis
+            dataKey="day"
+            axisLine={false}
+            tickLine={false}
+            tick={{ fill: "#FFFFFF", fillOpacity: "50%" }}
+            tickFormatter={(day) => day}
+          />
+          <YAxis hide={true} domain={["dataMin - 20", "dataMax + 40"]} />
+          <Tooltip content={<CustomTooltip />} />
+          <Line
+            type="natural"
+            dataKey="sessionLength"
+            stroke="#FBFBFB"
+            dot={false}
+            activeDot={{
+              stroke: "rgba(255,255,255, 0.3)",
+              strokeWidth: 10,
+              r: 5,
+            }}
+          />
+        </LineChart>
+      </ResponsiveContainer>
+    );
+  }
+}
 
+// Définition des types des props avec PropTypes
 AvgSessionsChart.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
@@ -119,5 +131,3 @@ AvgSessionsChart.propTypes = {
     })
   ).isRequired,
 };
-
-export default AvgSessionsChart;
