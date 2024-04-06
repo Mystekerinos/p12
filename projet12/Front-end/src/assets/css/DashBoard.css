@@ -45,7 +45,8 @@ column-gap: 3%;
     .dashboard-charts-calories-proteines-glucides-lipides {
         flex-direction: row;
         flex-wrap: wrap;
-
+        margin-top:3rem;
+        width:90%;
     }
 
 }
