@@ -8,6 +8,7 @@ import {
   Tooltip,
 } from "recharts";
 import PropTypes from "prop-types";
+import "../../css/AvgSessionsChart.css";
 /**
  * A component to display average session duration data using a line chart.
  * @param {object} props - The props object.
@@ -48,7 +49,7 @@ const AvgSessionsChart = (props) => {
   };
 
   return (
-    <ResponsiveContainer width="90%" height="90%">
+    <ResponsiveContainer width="100%" height="100%">
       <LineChart
         data={datas}
         margin={{ top: 20, right: 10, left: 10, bottom: 20 }}
@@ -63,14 +64,12 @@ const AvgSessionsChart = (props) => {
           x={10}
           y={30}
           textAnchor="left"
-          style={{
-            fontSize: "1.8rem",
-            fontWeight: 500,
-            fill: "#FFFFFF",
-            fillOpacity: "50%",
-          }}
+          className="AvgSessionschart-title"
         >
-          Durée moyenne des sessions
+          <tspan>Durée moyenne des</tspan>
+          <tspan x={10} dy="1.2em">
+            sessions
+          </tspan>
         </text>
         <XAxis
           dataKey="day"
@@ -103,7 +102,7 @@ const AvgSessionsChart = (props) => {
           cursor={{
             stroke: "#000000",
             strokeOpacity: "10%",
-            strokeWidth: "20%",
+            strokeWidth: "50%",
             height: "100%",
           }}
         />

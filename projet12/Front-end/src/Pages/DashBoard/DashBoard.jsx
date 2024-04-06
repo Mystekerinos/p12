@@ -1,62 +1,37 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ReactSwitch from "react-switch";
-import { useParams } from "react-router-dom";
 import Header from "../../Components/Header/Header";
 import SideBar from "../../Components/SideBar/SideBar";
-import useApiData from "../../utils/useApiData";
-import "./DashBoard.css";
+import "../../css/DashBoard.css";
 import ActivityBar from "../../Components/Barchart/ActivityBar";
 import KeyMetrics from "../../Components/KeyMetrics/KeyMetrics";
-import caloriesIcon from "../../Images /calories-icon.svg";
-import glucidesIcon from "../../Images /glucides-icon.svg";
-import lipidesIcon from "../../Images /lipides-icon.svg";
-import proteinesIcon from "../../Images /proteines-icon.svg";
+import caloriesIcon from "../../assets/calories-icon.svg";
+import glucidesIcon from "../../assets/glucides-icon.svg";
+import lipidesIcon from "../../assets/lipides-icon.svg";
+import proteinesIcon from "../../assets/proteines-icon.svg";
 import AvgSessionsChart from "../../Components/Barchart/AvgSessionsChart";
 import ObjectiveChart from "../../Components/Barchart/ObjectiveChart";
 import PerformanceChart from "../../Components/Barchart/PerformanceChart";
 import PageNotFound from "../PageNotFound/PageNotFound";
-import {
-  USER_MAIN_DATA,
-  USER_ACTIVITY,
-  USER_AVERAGE_SESSIONS,
-  USER_PERFORMANCE,
-} from "../../data/data";
+import FormatData from "../../utils/FormatData";
+import ReactSwitch from "../../Components/Button/reactSwitch";
 
-const Dashboard = () => {
-  const { userId } = useParams();
-  const [useApi, setUseApi] = React.useState(true);
-
-  // Données mockées
-  const [userDataMock] = React.useState(USER_MAIN_DATA);
-  const [performanceDataMock] = React.useState(USER_PERFORMANCE);
-  const [activityDataMock] = React.useState(USER_ACTIVITY);
-  const [averageSessionsMock] = React.useState(USER_AVERAGE_SESSIONS);
-
-  // Utilisation du hook personnalisé pour récupérer les données de l'API
-  const { userData, performanceData, activityData, averageSessions } =
-    useApiData(userId);
-
-  // Récupération des données en fonction de l'état useApi
-  const currentUserData = useApi
-    ? userData
-    : userDataMock.find((user) => user.id === parseInt(userId));
-  const userPerformanceData = useApi
-    ? performanceData
-    : performanceDataMock.find((user) => user.userId === parseInt(userId));
-  const userActivityData = useApi
-    ? activityData
-    : activityDataMock.find((user) => user.userId === parseInt(userId));
-  const userAverageSessionsData = useApi
-    ? averageSessions
-    : averageSessionsMock.find((user) => user.userId === parseInt(userId));
-
-  // Vérification si les données sont chargées
-  if (!userData || !performanceData || !activityData || !averageSessions) {
-    return <PageNotFound />;
-  }
-
-  // Vérification si l'utilisateur courant existe
+const Dashboard = ({ userId }) => {
+  const {
+    useApi,
+    toggleDataMode,
+    currentUserData,
+    userPerformanceData,
+    userActivityData,
+    userAverageSessionsData,
+  } = FormatData();
+  console.log(
+    "currentUserData,userPerformanceData,userActivityData,userAverageSessionsData",
+    currentUserData,
+    userPerformanceData,
+    userActivityData,
+    userAverageSessionsData
+  );
   if (
     !currentUserData ||
     !userPerformanceData ||
@@ -83,7 +58,7 @@ const Dashboard = () => {
               <span className="toggle-label">Mock</span>
               <ReactSwitch
                 checked={useApi}
-                onChange={() => setUseApi(!useApi)}
+                onChange={toggleDataMode}
                 onColor="#86d3ff"
                 offColor="#ccc"
                 checkedIcon={false}
@@ -97,10 +72,7 @@ const Dashboard = () => {
           </p>
           <div className="dashboard-informations">
             <div className="dashboard-charts">
-              <div
-                className="activity-container"
-                style={{ width: "100%", height: "400px" }}
-              >
+              <div className="activity-container" style={{ height: "400px" }}>
                 <ActivityBar data={userActivityData.sessions} />
               </div>
               <div className="dashboard-charts-avgSession-objective-performance">

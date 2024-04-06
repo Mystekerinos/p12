@@ -1,6 +1,7 @@
 import React from "react";
 import { PieChart, Pie, ResponsiveContainer } from "recharts";
 import PropTypes from "prop-types";
+import "../../css/ObjectiveChart.css";
 /**
  * A component to display objective data using a pie chart.
  * @param {object} props - The props object.
@@ -29,16 +30,7 @@ const ObjectiveChart = (props) => {
   return (
     <ResponsiveContainer width="100%" height={400}>
       <PieChart>
-        <text
-          x={20}
-          y={30}
-          textAnchor="left"
-          style={{
-            fontSize: "1.8rem",
-            fontWeight: 500,
-            fill: "#000000",
-          }}
-        >
+        <text x={20} y={30} textAnchor="left" className="ObjectiveChart-title">
           Score
         </text>
         <Pie
@@ -57,7 +49,7 @@ const ObjectiveChart = (props) => {
           x="50%"
           y="42%"
           textAnchor="middle"
-          style={{ fill: "#282D30", fontSize: "2.6rem", fontWeight: "700" }}
+          className="ObjectiveChart-percentage"
         >
           {scorePercentage} %
         </text>
@@ -65,7 +57,7 @@ const ObjectiveChart = (props) => {
           x="50%"
           y="50%"
           textAnchor="middle"
-          style={{ fill: "#74798C", fontSize: "1.6rem", fontWeight: "500" }}
+          className="ObjectiveChart-information"
         >
           de votre
         </text>
@@ -73,7 +65,7 @@ const ObjectiveChart = (props) => {
           x="50%"
           y="58%"
           textAnchor="middle"
-          style={{ fill: "#74798C", fontSize: "1.6rem", fontWeight: "500" }}
+          className="ObjectiveChart-information"
         >
           objectif
         </text>

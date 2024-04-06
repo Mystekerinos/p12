@@ -53,7 +53,7 @@ const ActivityBar = (props) => {
     }
   };
   return (
-    <ResponsiveContainer width="90%" height="80%">
+    <ResponsiveContainer width="100%" height="80%">
       <BarChart data={data} barGap={12} barSize={8}>
         <text
           x={0}

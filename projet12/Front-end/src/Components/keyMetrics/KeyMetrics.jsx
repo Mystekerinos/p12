@@ -1,6 +1,5 @@
 import React from "react";
-import "./KeyMetrics.css";
-
+import "../../css/KeyMetrics.css";
 /**
  * Reusable component to display key information.
  * @param {string} icon The URL of the icon to display.

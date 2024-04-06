@@ -1,0 +1,43 @@
+
+
+
+.ObjectiveChart-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: #20253A;;;
+}
+.ObjectiveChart-percentage{
+    font-size: 26px;
+    font-weight: 700;
+    color: #282D30
+}
+.ObjectiveChart-information {
+    font-size: 26px;
+    font-weight: 500;
+    color: #74798C
+}
+
+
+
+@media only screen and (max-width: 1700px) {
+    .ObjectiveChart-title {
+        font-size: 1.8rem;
+    }
+    .ObjectiveChart-percentage {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #282D30
+    }
+    .ObjectiveChart-information {
+        font-size: 26px;
+        font-weight: 500;
+        color: #74798C
+    }
+}
+
+
+@media only screen and (max-width: 480px) {
+    .ObjectiveChart-title {
+        font-size: 1rem;
+    }
+}

@@ -1,18 +1,31 @@
-/**
- * Fetches data from the specified URL.
- *
- * @param {string} url - The URL to fetch data from.
- * @returns {Promise} - Une promesse contenant les données récupérées.
- * @throws {Error} - Si une erreur survient lors du processus de récupération.
- */
-export async function fetchData(url) {
+export async function FetchData(userId) {
   try {
-    const response = await fetch("http://localhost:3000" + url);
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    throw new Error(
-      `Erreur lors de la récupération des données depuis ${url}: ${error.message}`
+    const userResponse = await fetch(`http://localhost:3000/user/${userId}`);
+    const activityResponse = await fetch(
+      `http://localhost:3000/user/${userId}/activity`
     );
+    const avgSessionResponse = await fetch(
+      `http://localhost:3000/user/${userId}/average-sessions`
+    );
+    const performanceResponse = await fetch(
+      `http://localhost:3000/user/${userId}/performance`
+    );
+
+    const userData = (await userResponse.json()).data;
+    const activityData = (await activityResponse.json()).data;
+    const averageSessions = (await avgSessionResponse.json()).data;
+    const performanceData = (await performanceResponse.json()).data;
+
+    console.log(
+      "userData, performanceData, activityData, averageSessions",
+      userData,
+      performanceData,
+      activityData,
+      averageSessions
+    );
+
+    return { userData, performanceData, activityData, averageSessions };
+  } catch (error) {
+    throw new Error(`Error fetching data: ${error.message}`);
   }
 }
