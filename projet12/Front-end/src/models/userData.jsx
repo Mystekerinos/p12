@@ -87,15 +87,21 @@ export default class UserData {
    * @type {UserKeyData}
    */
   userKeyData;
+  /**
+   * @type {number}
+   */
+  userScore;
 
   /**
    * Create a user data object.
    * @constructor
    * @param {Object} data - The user's information.
    */
+
   constructor(data) {
     this.id = data.id;
     this.userInfos = new UserInfos(data.userInfos);
     this.userKeyData = new UserKeyData(data.keyData);
+    this.userScore = data.todayScore ?? data.score;
   }
 }

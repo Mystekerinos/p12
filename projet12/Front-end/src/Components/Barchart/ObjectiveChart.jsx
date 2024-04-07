@@ -5,9 +5,7 @@ import "../../assets/css/ObjectiveChart.css";
 /**
  * A component to display objective data using a pie chart.
  * @param {object} props - The props object.
- * @param {object} props.data - The objective data object containing the score information.
- * @param {number} props.data.score - The overall score.
- * @param {number} props.data.todayScore - The score achieved today.
+ * @param {number} props.score - The objective data object containing the score information.
  * @returns {JSX.Element} The ObjectiveChart React component.
  */
 
@@ -15,12 +13,12 @@ const ObjectiveChart = (props) => {
   const datas = [
     {
       name: "Group A",
-      value: props.data.score || props.data.todayScore,
+      value: props.score,
       fill: "#E60000",
     },
     {
       name: "Group B",
-      value: 1 - props.data.score || 1 - props.data.todayScore,
+      value: 1 - props.score,
       fill: "#FFFFFF",
     },
   ];

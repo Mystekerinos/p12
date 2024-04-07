@@ -97,7 +97,7 @@ const Dashboard = ({ userId }) => {
                   <PerformanceChart data={userPerformanceData.data} />
                 </div>
                 <div className="objective-container">
-                  <ObjectiveChart data={currentUserData} />
+                  <ObjectiveChart score={currentUserData.userScore} />
                 </div>
               </div>
             </div>
