@@ -54,7 +54,7 @@ const Dashboard = ({ userId }) => {
   ) {
     return <PageNotFound />;
   }
-  console.log("userActivityData", userActivityData);
+
   return (
     <div>
       <Header />
