@@ -76,6 +76,6 @@ ObjectiveChart.propTypes = {
   data: PropTypes.shape({
     score: PropTypes.number,
     todayScore: PropTypes.number,
-  }).isRequired,
+  }),
 };
 export default ObjectiveChart;
