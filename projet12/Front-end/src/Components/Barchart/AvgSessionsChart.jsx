@@ -104,7 +104,10 @@ export default class AvgSessionsChart extends PureComponent {
             tickFormatter={(day) => day}
           />
           <YAxis hide={true} domain={["dataMin - 20", "dataMax + 40"]} />
-          <Tooltip content={<CustomTooltip />} />
+          <Tooltip
+            cursor={{ stroke: "transparent" }}
+            content={<CustomTooltip />}
+          />
           <Line
             type="natural"
             dataKey="sessionLength"
