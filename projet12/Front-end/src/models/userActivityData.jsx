@@ -11,10 +11,6 @@ class SessionData {
    * @type {number}
    */
   calories;
-  /**
-   * @type {number}
-   */
-  sessionLength;
 
   /**
    * Create a session data object.
@@ -23,7 +19,8 @@ class SessionData {
    */
   constructor(session) {
     this.day = session.day;
-    this.sessionLength = session.sessionLength;
+    this.kilogram = session.kilogram;
+    this.calories = session.calories;
   }
 }
 /**

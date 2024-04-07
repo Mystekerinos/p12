@@ -54,7 +54,7 @@ const Dashboard = ({ userId }) => {
   ) {
     return <PageNotFound />;
   }
-
+  console.log("userActivityData", userActivityData);
   return (
     <div>
       <Header />
@@ -106,28 +106,28 @@ const Dashboard = ({ userId }) => {
                 <KeyMetrics
                   icon={caloriesIcon}
                   name="Calories"
-                  value={`${currentUserData?.keyData.calorieCount}kCal`}
+                  value={`${currentUserData?.userKeyData.calorieCount}kCal`}
                 />
               </div>
               <div className="dashboard-charts-proteines dashboard-charts-all">
                 <KeyMetrics
                   icon={proteinesIcon}
                   name="Proteines"
-                  value={`${currentUserData?.keyData.proteinCount}g`}
+                  value={`${currentUserData?.userKeyData.proteinCount}g`}
                 />
               </div>
               <div className="dashboard-charts-glucides dashboard-charts-all">
                 <KeyMetrics
                   icon={glucidesIcon}
                   name="Glucides"
-                  value={`${currentUserData?.keyData.carbohydrateCount}g`}
+                  value={`${currentUserData?.userKeyData.carbohydrateCount}g`}
                 />
               </div>
               <div className="dashboard-charts-lipides dashboard-charts-all">
                 <KeyMetrics
                   icon={lipidesIcon}
                   name="Lipides"
-                  value={`${currentUserData?.keyData.lipidCount}g`}
+                  value={`${currentUserData?.userKeyData.lipidCount}g`}
                 />
               </div>
             </div>
