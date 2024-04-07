@@ -6,11 +6,10 @@ export default class UserAverageSessionsData {
   /**
    * Create a user average sessions data object.
    * @constructor
-   * @param {number} userId - The ID of the user.
-   * @param {Array} sessions - The array of average sessions.
+   * @param {Object} data - The average sessions data of the user
    */
-  constructor(userId, sessions) {
-    this.userId = userId;
-    this.sessions = sessions;
+  constructor(data) {
+    this.userId = data.userId;
+    this.sessions = data.sessions;
   }
 }

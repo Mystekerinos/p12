@@ -6,11 +6,10 @@ export default class UserActivityData {
   /**
    * Create a user activity data object.
    * @constructor
-   * @param {number} userId - The ID of the user.
-   * @param {Array} sessions - The array of user sessions.
+   * @param {Object} data - The activity data of the user
    */
-  constructor(userId, sessions) {
-    this.userId = userId;
-    this.sessions = sessions;
+  constructor(data) {
+    this.userId = data.userId;
+    this.sessions = data.sessions;
   }
 }

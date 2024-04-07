@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-
+import UserData from "../models/userData";
+import UserActivityData from "../models/userActivityData";
+import UserAverageSessionsData from "../models/userAverageSessionsData";
+import UserPerformanceData from "../models/userPerformanceData";
 import {
   USER_MAIN_DATA,
   USER_PERFORMANCE,
@@ -14,10 +17,10 @@ import { apiServiceFetchData } from "../utils/apiServiceFetchData";
  * @returns {{
  *   useApi: boolean,
  *   toggleDataMode: () => void,
- *   currentUserData: Object | null,
- *   userPerformanceData: Object | null,
- *   userActivityData: Object | null,
- *   userAverageSessionsData: Object | null,
+ *   currentUserData: UserData | null,
+ *   userPerformanceData: UserPerformanceData | null,
+ *   userActivityData: UserActivityData | null,
+ *   userAverageSessionsData: UserAverageSessionsData | null,
  *   loadingUserData: boolean,
  *   loadingPerformanceData: boolean,
  *   loadingActivityData: boolean,
@@ -46,10 +49,10 @@ const useFormatData = () => {
       try {
         const { userData, performanceData, activityData, averageSessions } =
           await apiServiceFetchData(userId);
-        setUserData(userData);
-        setPerformanceData(performanceData);
-        setActivityData(activityData);
-        setAverageSessions(averageSessions);
+        setUserData(new UserData(userData));
+        setPerformanceData(new UserPerformanceData(performanceData));
+        setActivityData(new UserActivityData(activityData));
+        setAverageSessions(new UserAverageSessionsData(averageSessions));
         setLoadingUserData(false);
         setLoadingPerformanceData(false);
         setLoadingActivityData(false);
@@ -71,16 +74,22 @@ const useFormatData = () => {
 
   const currentUserData = useApi
     ? userData
-    : userDataMock.find((user) => user.id === parseInt(userId));
+    : new UserData(userDataMock.find((user) => user.id === parseInt(userId)));
   const userPerformanceData = useApi
     ? performanceData
-    : performanceDataMock.find((user) => user.userId === parseInt(userId));
+    : new UserPerformanceData(
+        performanceDataMock.find((user) => user.userId === parseInt(userId))
+      );
   const userActivityData = useApi
     ? activityData
-    : activityDataMock.find((user) => user.userId === parseInt(userId));
+    : new UserActivityData(
+        activityDataMock.find((user) => user.userId === parseInt(userId))
+      );
   const userAverageSessionsData = useApi
     ? averageSessions
-    : averageSessionsMock.find((user) => user.userId === parseInt(userId));
+    : new UserAverageSessionsData(
+        averageSessionsMock.find((user) => user.userId === parseInt(userId))
+      );
   /**
    * Function to toggle between API and mock data mode.
    */
