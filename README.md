@@ -24,6 +24,11 @@ Utiliser Figma pour la maquette
 Utiliser Git et GitHub pour le versionnage
 
 
+Technologies
+JS
+CSS
+React
+
 
 🚀 Installation du backend
 
