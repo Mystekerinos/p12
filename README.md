@@ -14,7 +14,7 @@ Sportsee - Développez un tableau de bord d'analytics avec React.
 
 
 
-cahier des charges: 
+**cahier des charges:** 
 
 Utiliser React
 Utiliser l'API fournie
@@ -25,7 +25,7 @@ Utiliser Figma pour la maquette
 Utiliser Git et GitHub pour le versionnage
 
 
-Technologies
+**Technologies**
 JS
 CSS
 React
